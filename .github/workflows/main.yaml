@@ -55,9 +55,6 @@ jobs:
         image: ${{ env.kind-image }}
     - name: Wait cluster to start
       run: |
-        until [ "$(kubectl get pods -A --no-headers | grep -cEv '([0-9]+)/\1')" -eq 0 ]; do
-            sleep 5s
-        done
         kubectl get pod -A
     - name: Run and test Complete demo
       run: |
