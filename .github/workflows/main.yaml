@@ -34,8 +34,18 @@ jobs:
     - name: check comeplte-demo.yaml content sync
       run: docker run $COMPLETE_DEMO_ARGS $COMPLETE_DEMO_IMAGE make -C $COMPLETE_DEMO_DIR check-complete-demo
 
-  #
-  #
+  api-call:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Evolven deployments - start
+        run: |
+          # Use curl to make the API call
+          curl -X GET "http://localhost:8080/enlight.server/html/external/deployment.jsp?action=scan&fastMode=true&stage=start&deployment=181d563f-434f-2357-7b4d-0eb88f4977d0&application-envId=sock-shop&source=github&date-template=disabled&timeout=5"
+
   #check that we can deploy complete-demo
   #NOTE: what about docker compose? maybe doesn't make sense if we use the KIND action
   #NOTE: later we can test that the documentation is tested, as in previous cronjobs in travis
@@ -63,8 +73,19 @@ jobs:
         kubectl describe node | grep "Allocated resources" -A 10
         kubectl get pod -A
 
-  #
-  #
+  api-call:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Evolven deployments - end
+        run: |
+          # Use curl to make the API call
+          curl -X GET "http://localhost:8080/enlight.server/html/external/deployment.jsp?action=scan&fastMode=true&stage=end&deployment=181d563f-434f-2357-7b4d-0eb88f4977d0&application-envId=sock-shop&source=github&date-template=disabled&timeout=5"
+  
+  
   #build openapi and healtcheck images
   ####build-test-images:
   ####  if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master'
