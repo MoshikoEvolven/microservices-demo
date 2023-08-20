@@ -1,7 +1,7 @@
 {
     "name": "microservices-demo-api-test",
     "nicename": "Microservices demo API test",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "private": true,
     "description": "Verify microservices API endpoints against the specification",
     
