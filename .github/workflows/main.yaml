@@ -28,6 +28,7 @@ jobs:
       run: docker run $COMPLETE_DEMO_ARGS $COMPLETE_DEMO_IMAGE make -C $COMPLETE_DEMO_DIR check-complete-demo
 
   api-call-start:
+    needs: complete-demo-sync-check
     runs-on: ubuntu-latest
 
     steps:
@@ -43,7 +44,7 @@ jobs:
   #NOTE: what about docker compose? maybe doesn't make sense if we use the KIND action
   #NOTE: later we can test that the documentation is tested, as in previous cronjobs in travis
   deployments-tests:
-    needs: complete-demo-sync-check
+    needs: api-call-start
     runs-on: ubuntu-latest
     env:
       kind-version: 'v0.10.0'
@@ -67,6 +68,7 @@ jobs:
         kubectl get pod -A
 
   api-call-end:
+    needs: deployments-tests
     runs-on: ubuntu-latest
 
     steps:
