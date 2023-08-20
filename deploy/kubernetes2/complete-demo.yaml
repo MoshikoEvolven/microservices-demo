@@ -308,6 +308,7 @@ metadata:
         prometheus.io/scrape: 'true'
   labels:
     name: front-end
+    repo: evolven-server
   namespace: sock-shop
 spec:
   type: NodePort
