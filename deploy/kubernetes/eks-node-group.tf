@@ -35,7 +35,7 @@ resource "aws_iam_role_policy_attachment" "amazon-ec2-container-registry-readonl
 
 resource "aws_eks_node_group" "node-group" {
   cluster_name    = aws_eks_cluster.eks-cluster.name
-  node_group_name = "eks-node-group"
+  node_group_name = "eks-node-group2"
   node_role_arn   = aws_iam_role.node-group-role.arn
   subnet_ids = [
     aws_subnet.public_1.id,
@@ -54,7 +54,7 @@ resource "aws_eks_node_group" "node-group" {
     min_size     = 1
   }
   remote_access {
-    ec2_ssh_key = "qa-key1"
+    ec2_ssh_key = "qa-key"
   }
   depends_on = [
     aws_iam_role_policy_attachment.amazon-eks-worker-node-policy,
