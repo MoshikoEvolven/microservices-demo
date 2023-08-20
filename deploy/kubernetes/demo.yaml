@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: carts-demo
+  annotations:
+        prometheus.io/scrape: 'true'
+  labels:
+    name: carts-demo
+  namespace: demo
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 8083
+    targetPort: 8083
+  selector:
+    name: carts-demo
+---
