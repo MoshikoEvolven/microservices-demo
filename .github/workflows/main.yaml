@@ -8,8 +8,7 @@ on:
     - "*"  # run for tags
 
 jobs:
-  #
-  #
+
   #check complete demo is in sync with individual manifest, it should block fom merge. Should this be a diferent file?
   complete-demo-sync-check:
     runs-on: ubuntu-latest
@@ -19,17 +18,11 @@ jobs:
       COMPLETE_DEMO_IMAGE: 'manifests-image'
     steps:
     - uses: actions/checkout@v2
-
-    #
-    #
     # Build image
     - name: Build image
       env:
         DOCKER_BUILDKIT: 1
       run: docker build -t $COMPLETE_DEMO_IMAGE $COMPLETE_DEMO_DIR
-
-    #
-    #
     # Check that manifest and complete-demo.yaml ahve the same content
     - name: check comeplte-demo.yaml content sync
       run: docker run $COMPLETE_DEMO_ARGS $COMPLETE_DEMO_IMAGE make -C $COMPLETE_DEMO_DIR check-complete-demo
@@ -38,10 +31,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Evolven deployments - start
+    - name: Evolven deployments - start
         run: |
           # Use curl to make the API call
           curl -X GET "http://localhost:8080/enlight.server/html/external/deployment.jsp?action=scan&fastMode=true&stage=start&deployment=181d563f-434f-2357-7b4d-0eb88f4977d0&application-envId=sock-shop&source=github&date-template=disabled&timeout=5"
