@@ -70,13 +70,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Evolven deployments - end
-        run: |
-          # Use curl to make the API call
-          curl -X GET "http://localhost:8080/enlight.server/html/external/deployment.jsp?action=scan&fastMode=true&stage=end&deployment=181d563f-434f-2357-7b4d-0eb88f4977d0&application-envId=sock-shop&source=github&date-template=disabled&timeout=5"
+    - name: Evolven deployments - end
+      run: |
+        # Use curl to make the API call
+        curl -X GET "http://localhost:8080/enlight.server/html/external/deployment.jsp?action=scan&fastMode=true&stage=end&deployment=181d563f-434f-2357-7b4d-0eb88f4977d0&application-envId=sock-shop&source=github&date-template=disabled&timeout=5"
   
   
   #build openapi and healtcheck images
