@@ -62,11 +62,8 @@ jobs:
     - name: Run and test Complete demo
       run: |
         kubectl apply -f deploy/kubernetes/complete-demo.yaml
-        until [ "$(kubectl get pods -n sock-shop --no-headers | grep -cEv '([0-9]+)/\1')" -eq 0 ]; do
-            sleep 5s
-            kubectl get pods -n sock-shop
-            kubectl describe node | grep "Allocated resources" -A 10
-        done
+        kubectl get pods -n sock-shop
+        kubectl describe node | grep "Allocated resources" -A 10
         kubectl get pod -A
 
   #
