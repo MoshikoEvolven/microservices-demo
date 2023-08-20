@@ -54,7 +54,7 @@ resource "aws_eks_node_group" "node-group" {
     min_size     = 1
   }
   remote_access {
-    ec2_ssh_key = "qa-key"
+    ec2_ssh_key = "qa-key1"
   }
   depends_on = [
     aws_iam_role_policy_attachment.amazon-eks-worker-node-policy,
