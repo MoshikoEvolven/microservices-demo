@@ -35,9 +35,9 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Evolven deployments - start
-        run: |
-          # Use curl to make the API call
-          curl -X GET "http://localhost:8080/enlight.server/html/external/deployment.jsp?action=scan&fastMode=true&stage=start&deployment=181d563f-434f-2357-7b4d-0eb88f4977d0&application-envId=sock-shop&source=github&date-template=disabled&timeout=5"
+      run: |
+        # Use curl to make the API call
+        curl -X GET "http://localhost:8080/enlight.server/html/external/deployment.jsp?action=scan&fastMode=true&stage=start&deployment=181d563f-434f-2357-7b4d-0eb88f4977d0&application-envId=sock-shop&source=github&date-template=disabled&timeout=5"
 
   #check that we can deploy complete-demo
   #NOTE: what about docker compose? maybe doesn't make sense if we use the KIND action
