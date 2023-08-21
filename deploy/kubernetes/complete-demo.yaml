@@ -341,11 +341,11 @@ spec:
         image: weaveworksdemos/orders:0.4.7
         env:
          - name: JAVA_OPTS
-           value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+           value: -Xms64m -Xmx64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
         resources:
           limits:
             cpu: 500m
-            memory: 500Mi
+            memory: 300Mi
           requests:
             cpu: 100m
             memory: 300Mi
