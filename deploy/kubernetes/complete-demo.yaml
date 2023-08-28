@@ -341,7 +341,7 @@ spec:
         image: weaveworksdemos/orders:0.4.7
         env:
          - name: JAVA_OPTS
-           value: -Xms64m -Xmx64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+           value: -Xms64m -Xmx32m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
         resources:
           limits:
             cpu: 500m
@@ -450,7 +450,7 @@ metadata:
   name: payment
   annotations:
     prometheus.io/scrape: 'true'
-    prometheus.io/scrape_interval: '3s'
+    prometheus.io/scrape_interval: '4s'
   labels:
     name: payment
   namespace: sock-shop
