@@ -38,7 +38,7 @@ jobs:
     - name: Evolven deployments - start
       run: |
         # Use curl to make the API call
-        curl -X GET "https://cicd2022.evolven.com/enlight.server/html/external/deployment.jsp?action=scan&fastMode=true&stage=start&deployment=$GITHUB_RUN_ID&application-envId=sock-shop&source=github&date-template=disabled&timeout=5&name=evolven&pass=Mdls1997"
+        curl -X GET "https://cicd2022.evolven.com/enlight.server/html/external/deployment.jsp?action=scan&fastMode=true&stage=start&deployment=${{github.workspace}}%20$GITHUB_RUN_ID&Message=${{github.event_name}}&application-envId=sock-shop&source=github&date-template=disabled&timeout=5&user=evolven&pass=Mdls1997"
 
   #check that we can deploy complete-demo
   #NOTE: what about docker compose? maybe doesn't make sense if we use the KIND action
@@ -78,7 +78,7 @@ jobs:
     - name: Evolven deployments - end
       run: |
         # Use curl to make the API call
-        curl -X GET "https://cicd2022.evolven.com/enlight.server/html/external/deployment.jsp?action=scan&fastMode=true&stage=end&deployment=$GITHUB_RUN_ID&application-envId=sock-shop&source=github&date-template=disabled&timeout=5&name=evolven&pass=Mdls1997"
+        curl -X GET "https://cicd2022.evolven.com/enlight.server/html/external/deployment.jsp?action=scan&fastMode=true&stage=end&deployment=${{github.workspace}}%20$GITHUB_RUN_ID&Message=${{github.event_name}}&application-envId=sock-shop&source=github&date-template=disabled&timeout=5&user=evolven&pass=Mdls1997"
   
   
   #build openapi and healtcheck images
