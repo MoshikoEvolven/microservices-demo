@@ -26,7 +26,7 @@ spec:
         image: weaveworksdemos/carts:0.4.8
         env:
          - name: JAVA_OPTS
-           value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+           value: -Xms64m -Xmx64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
         resources:
           limits:
             cpu: 300m
@@ -224,7 +224,7 @@ spec:
         image: weaveworksdemos/catalogue-db:0.3.0
         env:
           - name: MYSQL_ROOT_PASSWORD
-            value: fake_password
+            value: dummy_password
           - name: MYSQL_DATABASE
             value: socksdb
         ports:
@@ -341,7 +341,7 @@ spec:
         image: weaveworksdemos/orders:0.4.7
         env:
          - name: JAVA_OPTS
-           value: -Xms32m -Xmx32m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+           value: -Xms32m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
         resources:
           limits:
             cpu: 500m
@@ -450,7 +450,7 @@ metadata:
   name: payment
   annotations:
     prometheus.io/scrape: 'true'
-    prometheus.io/scrape_interval: '4s'
+    prometheus.io/scrape_interval: '6s'
   labels:
     name: payment
   namespace: sock-shop
@@ -542,7 +542,7 @@ spec:
         image: weaveworksdemos/queue-master:0.3.1
         env:
          - name: JAVA_OPTS
-           value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+           value: -Xms64m -Xmx64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
         resources:
           limits:
             cpu: 300m
@@ -716,7 +716,9 @@ spec:
          - name: ZIPKIN
            value: zipkin.jaeger.svc.cluster.local
          - name: JAVA_OPTS
-           value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+           value: -Xms64m -Xmx32m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+         - name: LOG.LEVEL
+           value: DEBUG
         resources:
           limits:
             cpu: 300m
